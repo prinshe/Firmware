@@ -52,9 +52,6 @@ void IEKF::correctLand(uint64_t timestamp)
 		return;
 	}
 
-	// require agl < 0.3 m
-	//
-
 	// return if no new data or too fast
 	float dt = 0;
 
@@ -64,11 +61,9 @@ void IEKF::correctLand(uint64_t timestamp)
 
 	// init global reference
 	if (_origin.altInitialized() && !_origin.xyInitialized()) {
-		float lat_deg = 47.397742f;
-		float lon_deg = 8.545594f;
 		ROS_INFO("land origin init lat: %12.6f deg lon: %12.6f deg",
-			 double(lat_deg), double(lon_deg));
-		_origin.xyInitialize(lat_deg, lon_deg, timestamp);
+			 double(fake_lat_deg), double(fake_lon_deg));
+		_origin.xyInitialize(fake_lat_deg, fake_lon_deg, timestamp);
 	}
 
 	// calculate residual

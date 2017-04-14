@@ -61,11 +61,9 @@ void IEKF::correctFlow(const optical_flow_s *msg)
 
 	// init global reference
 	if (_origin.altInitialized() && !_origin.xyInitialized()) {
-		float lat_deg = 47.397742f;
-		float lon_deg = 8.545594f;
 		ROS_INFO("flow origin init lat: %12.6f deg lon: %12.6f deg",
-			 double(lat_deg), double(lon_deg));
-		_origin.xyInitialize(lat_deg, lon_deg, msg->timestamp);
+			 double(fake_lat_deg), double(fake_lon_deg));
+		_origin.xyInitialize(fake_lat_deg, fake_lon_deg, msg->timestamp);
 	}
 
 	// return if too close to ground
@@ -86,14 +84,14 @@ void IEKF::correctFlow(const optical_flow_s *msg)
 	float rotRate = angVelNB.norm();
 
 	// abort if rotRate too high
-	if (rotRate > 10.0f) {
-		ROS_INFO("rotation rate too large for flow correction");
+	if (rotRate > 1.0f) {
+		//ROS_INFO("rotation rate too large for flow correction");
 		return;
 	}
 
 	// abort if too large of an angle
 	if (C_nb(2, 2) < 1e-1f) {
-		ROS_INFO("flow correction aborted, too large of an angle");
+		//ROS_INFO("flow correction aborted, too large of an angle");
 		return;
 	}
 

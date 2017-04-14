@@ -34,8 +34,8 @@
 #include "IEKF.hpp"
 #include "constants.hpp"
 
-float condMaxDefault = 1e3;
-float betaMaxDefault = 1e21;
+float condMaxDefault = 10;
+float betaMaxDefault = 3;
 
 IEKF::IEKF() :
 	//SuperBlock(NULL, "IEKF"),
@@ -196,9 +196,9 @@ IEKF::IEKF() :
 	_P0Diag(Xe::vel_N) = 0;
 	_P0Diag(Xe::vel_E) = 0;
 	_P0Diag(Xe::vel_D) = 0;
-	_P0Diag(Xe::gyro_bias_N) = 1e-6;
-	_P0Diag(Xe::gyro_bias_E) = 1e-6;
-	_P0Diag(Xe::gyro_bias_D) = 1e-6;
+	_P0Diag(Xe::gyro_bias_N) = 1e-4;
+	_P0Diag(Xe::gyro_bias_E) = 1e-4;
+	_P0Diag(Xe::gyro_bias_D) = 1e-4;
 	_P0Diag(Xe::accel_bias_N) = 1e-3;
 	_P0Diag(Xe::accel_bias_E) = 1e-3;
 	_P0Diag(Xe::accel_bias_D) = 1e-3;

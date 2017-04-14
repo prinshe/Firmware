@@ -40,6 +40,9 @@ const double rad2deg = 180 / M_PI;
 const float deg2radf = M_PI_F / 180;
 const float rad2degf = 180 / M_PI_F;
 
+const double fake_lat_deg = 47.397742;
+const double fake_lon_deg = 8.545594;
+
 /**
  * Note that structs are used instead of enums
  * to allow use in arrays without casting
